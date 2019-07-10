@@ -59,7 +59,7 @@
   }
   .mint-swipe-arrow-right{
     right: 0;
-  }    
+  }
 </style>
 
 <template>
@@ -74,8 +74,14 @@
            @click="goto($index)"
            :class="{ 'is-active': $index === index }"></div>
     </div>
-    <div class="mint-swipe-arrow-left" @click="prev()" v-show="showArrows">&lt;</div>
-    <div class="mint-swipe-arrow-right" @click="next()" v-show="showArrows">&gt;</div>
+    <div class="mint-swipe-arrow-left" @click="prev()" v-show="showArrows">
+      <img :src="leftArrow" v-if="leftArrow !== ''" />
+      <span v-else>&lt;</span>
+    </div>
+    <div class="mint-swipe-arrow-right" @click="next()" v-show="showArrows">
+      <img :src="rightArrow" v-if="rightArrow !== ''" />
+      <span v-else>&gt;</span>
+    </div>
   </div>
 </template>
 
@@ -149,10 +155,20 @@
         type: Boolean,
         default: false
       },
-      
+
       showArrows: {
         type: Boolean,
         default: false
+      },
+
+      leftArrow: {
+        type: String,
+        default: ""
+      },
+
+      rightArrow: {
+        type: String,
+        default: ""
       }
 
     },
