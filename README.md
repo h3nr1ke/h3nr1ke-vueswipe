@@ -103,6 +103,8 @@ Work on a Vue instance:
 | continuous | Boolean | Create an infinite slider without endpoints | true |
 | showIndicators | Boolean | Show indicators on slider bottom | true |
 | showArrows | Boolean | Show lateral centered arrows | false |
+| leftArrow | String | image to be displayed as left arrow | the char "<" |
+| rightArrow | String | image to be displayed as right arrow | the char ">" |
 | noDragWhenSingle | Boolean | Do not drag when there is only one swipe-item | true |
 | prevent | Boolean | `preventDefault` when touch start, useful for some lower version Android Browser (4.2, etc) | false |
 | propagation | Boolean | solve nesting | false |
