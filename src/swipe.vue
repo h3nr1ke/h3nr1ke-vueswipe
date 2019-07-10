@@ -43,6 +43,23 @@
   .mint-swipe-indicator.is-active {
     background: #fff;
   }
+  .mint-swipe-arrow-left,
+  .mint-swipe-arrow-right{
+    position: absolute;
+    height: 100%;
+    top: 0;
+    font-size: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+  }
+  .mint-swipe-arrow-left{
+    left: 0;
+  }
+  .mint-swipe-arrow-right{
+    right: 0;
+  }    
 </style>
 
 <template>
@@ -54,8 +71,11 @@
       <div class="mint-swipe-indicator"
            v-for="(page, $index) in pages"
            :key="$index"
+           @click="goto($index)"
            :class="{ 'is-active': $index === index }"></div>
     </div>
+    <div class="mint-swipe-arrow-left" @click="prev()" v-show="showArrows">&lt;</div>
+    <div class="mint-swipe-arrow-right" @click="next()" v-show="showArrows">&gt;</div>
   </div>
 </template>
 
@@ -126,6 +146,11 @@
       },
 
       propagation: {
+        type: Boolean,
+        default: false
+      },
+      
+      showArrows: {
         type: Boolean,
         default: false
       }
