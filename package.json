@@ -1,5 +1,5 @@
 {
-  "name": "vue-swipe",
+  "name": "vue-swipe-h3nr1ke",
   "version": "2.4.0",
   "description": "A touch slider for vue.js.",
   "main": "dist/vue-swipe.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ElemeFE/vue-swipe.git"
+    "url": "https://github.com/h3nr1ke/vue-swipe-h3nr1ke.git"
   },
   "babel": {
     "presets": [
@@ -28,8 +28,11 @@
     "slider",
     "vue"
   ],
-  "author": "long.zhang@ele.me",
+  "author": "Henrique Deodato",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/h3nr1ke/vue-swipe-h3nr1ke/issues"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
