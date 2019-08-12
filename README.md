@@ -5,7 +5,7 @@ vue-swipe is a touch slider for Vue.js.
 ## Install
 
 ```bash
-$ npm install vue-swipe
+$ npm install h3nr1ke-vueswipe
 ```
 
 ## Import
@@ -15,13 +15,13 @@ $ npm install vue-swipe
 Import components to your project:
 
 ``` js
-require('vue-swipe/dist/vue-swipe.css');
+require('h3nr1ke-vueswipe/dist/vue-swipe.css');
 
 // in ES6 modules
-import { Swipe, SwipeItem } from 'vue-swipe';
+import { Swipe, SwipeItem } from 'h3nr1ke-vueswipe';
 
 // in CommonJS
-const { Swipe, SwipeItem } = require('vue-swipe');
+const { Swipe, SwipeItem } = require('h3nr1ke-vueswipe');
 
 // in Global variable
 const { Swipe, SwipeItem } = VueSwipe;
