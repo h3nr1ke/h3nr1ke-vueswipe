@@ -242,141 +242,147 @@
       },
 
       doAnimate(towards, options) {
-        if (this.$children.length === 0) return;
-        if (!options && this.$children.length < 2) return;
+        if (!this.animating) {
+          if (this.$children.length === 0) return;
+          if (!options && this.$children.length < 2) return;
 
-        var prevPage, nextPage, currentPage, pageWidth, offsetLeft;
-        var speed = this.speed || 300;
-        var index = this.index;
-        var pages = this.pages;
-        var pageCount = pages.length;
+          var prevPage, nextPage, currentPage, pageWidth, offsetLeft;
+          var speed = this.speed || 300;
+          var index = this.index;
+          var pages = this.pages;
+          var pageCount = pages.length;
 
-        if (!options || towards === 'goto') {
-          options = options || {};
-          pageWidth = this.$el.clientWidth;
-          currentPage = pages[index];
-          if (towards === 'goto') {
-            prevPage = options.prevPage;
-            nextPage = options.nextPage;
-          } else {
-            prevPage = pages[index - 1];
-            nextPage = pages[index + 1];
-          }
-
-          if (this.continuous && pages.length > 1) {
-            if (!prevPage) {
-              prevPage = pages[pages.length - 1];
+          if (!options || towards === 'goto') {
+            options = options || {};
+            pageWidth = this.$el.clientWidth;
+            currentPage = pages[index];
+            if (towards === 'goto') {
+              prevPage = options.prevPage;
+              nextPage = options.nextPage;
+            } else {
+              prevPage = pages[index - 1];
+              nextPage = pages[index + 1];
             }
-            if (!nextPage) {
-              nextPage = pages[0];
+
+            if (this.continuous && pages.length > 1) {
+              if (!prevPage) {
+                prevPage = pages[pages.length - 1];
+              }
+              if (!nextPage) {
+                nextPage = pages[0];
+              }
             }
-          }
-          if (prevPage) {
-            prevPage.style.display = 'block';
-            this.translate(prevPage, -pageWidth);
-          }
-          if (nextPage) {
-            nextPage.style.display = 'block';
-            this.translate(nextPage, pageWidth);
-          }
-        } else {
-          prevPage = options.prevPage;
-          currentPage = options.currentPage;
-          nextPage = options.nextPage;
-          pageWidth = options.pageWidth;
-          offsetLeft = options.offsetLeft;
-        }
-
-        var newIndex;
-
-        var oldPage = this.$children[index].$el;
-
-        if (towards === 'prev') {
-          if (index > 0) {
-            newIndex = index - 1;
-          }
-          if (this.continuous && index === 0) {
-            newIndex = pageCount - 1;
-          }
-        } else if (towards === 'next') {
-          if (index < pageCount - 1) {
-            newIndex = index + 1;
-          }
-          if (this.continuous && index === pageCount - 1) {
-            newIndex = 0;
-          }
-        } else if (towards === 'goto') {
-          if (options.newIndex > -1 && options.newIndex < pageCount) {
-            newIndex = options.newIndex;
-          }
-        }
-
-        var callback = () => {
-          if (newIndex !== undefined) {
-            var newPage = this.$children[newIndex].$el;
-            removeClass(oldPage, 'is-active');
-            addClass(newPage, 'is-active');
-
-            this.index = newIndex;
-
-            this.$emit('change', newIndex, index);
-          }
-
-          if (prevPage) {
-            prevPage.style.display = '';
-          }
-
-          if (nextPage) {
-            nextPage.style.display = '';
-          }
-        };
-
-        setTimeout(() => {
-          if (towards === 'next') {
-            this.translate(currentPage, -pageWidth, speed, callback);
-            if (nextPage) {
-              this.translate(nextPage, 0, speed);
-            }
-          } else if (towards === 'prev') {
-            this.translate(currentPage, pageWidth, speed, callback);
             if (prevPage) {
-              this.translate(prevPage, 0, speed);
+              prevPage.style.display = 'block';
+              this.translate(prevPage, -pageWidth);
+            }
+            if (nextPage) {
+              nextPage.style.display = 'block';
+              this.translate(nextPage, pageWidth);
+            }
+          } else {
+            prevPage = options.prevPage;
+            currentPage = options.currentPage;
+            nextPage = options.nextPage;
+            pageWidth = options.pageWidth;
+            offsetLeft = options.offsetLeft;
+          }
+
+          var newIndex;
+
+          var oldPage = this.$children[index].$el;
+
+          if (towards === 'prev') {
+            if (index > 0) {
+              newIndex = index - 1;
+            }
+            if (this.continuous && index === 0) {
+              newIndex = pageCount - 1;
+            }
+          } else if (towards === 'next') {
+            if (index < pageCount - 1) {
+              newIndex = index + 1;
+            }
+            if (this.continuous && index === pageCount - 1) {
+              newIndex = 0;
             }
           } else if (towards === 'goto') {
-            if (prevPage) {
-              this.translate(currentPage, pageWidth, speed, callback);
-              this.translate(prevPage, 0, speed);
-            } else if (nextPage) {
-              this.translate(currentPage, -pageWidth, speed, callback);
-              this.translate(nextPage, 0, speed);
-            }
-          } else {
-            this.translate(currentPage, 0, speed, callback);
-            if (typeof offsetLeft !== 'undefined') {
-              if (prevPage && offsetLeft > 0) {
-                this.translate(prevPage, pageWidth * -1, speed);
-              }
-              if (nextPage && offsetLeft < 0) {
-                this.translate(nextPage, pageWidth, speed);
-              }
-            } else {
-              if (prevPage) {
-                this.translate(prevPage, pageWidth * -1, speed);
-              }
-              if (nextPage) {
-                this.translate(nextPage, pageWidth, speed);
-              }
+            if (options.newIndex > -1 && options.newIndex < pageCount) {
+              newIndex = options.newIndex;
             }
           }
-        }, 10);
+
+          var callback = () => {
+            if (newIndex !== undefined) {
+              var newPage = this.$children[newIndex].$el;
+              removeClass(oldPage, 'is-active');
+              addClass(newPage, 'is-active');
+
+              this.index = newIndex;
+
+              this.$emit('change', newIndex, index);
+            }
+
+            if (prevPage) {
+              prevPage.style.display = '';
+            }
+
+            if (nextPage) {
+              nextPage.style.display = '';
+            }
+          };
+
+          setTimeout(() => {
+            if (towards === 'next') {
+              this.translate(currentPage, -pageWidth, speed, callback);
+              if (nextPage) {
+                this.translate(nextPage, 0, speed);
+              }
+            } else if (towards === 'prev') {
+              this.translate(currentPage, pageWidth, speed, callback);
+              if (prevPage) {
+                this.translate(prevPage, 0, speed);
+              }
+            } else if (towards === 'goto') {
+              if (prevPage) {
+                this.translate(currentPage, pageWidth, speed, callback);
+                this.translate(prevPage, 0, speed);
+              } else if (nextPage) {
+                this.translate(currentPage, -pageWidth, speed, callback);
+                this.translate(nextPage, 0, speed);
+              }
+            } else {
+              this.translate(currentPage, 0, speed, callback);
+              if (typeof offsetLeft !== 'undefined') {
+                if (prevPage && offsetLeft > 0) {
+                  this.translate(prevPage, pageWidth * -1, speed);
+                }
+                if (nextPage && offsetLeft < 0) {
+                  this.translate(nextPage, pageWidth, speed);
+                }
+              } else {
+                if (prevPage) {
+                  this.translate(prevPage, pageWidth * -1, speed);
+                }
+                if (nextPage) {
+                  this.translate(nextPage, pageWidth, speed);
+                }
+              }
+            }
+          }, 10);
+        }
       },
 
       next() {
-        this.doAnimate('next');
+        if (!this.animating) {
+          this.doAnimate('next');
+        }
       },
 
       prev() {
-        this.doAnimate('prev');
+        if (!this.animating) {
+          this.doAnimate('prev');
+        }
       },
 
       goto(newIndex) {

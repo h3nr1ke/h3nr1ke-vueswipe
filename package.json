@@ -1,6 +1,6 @@
 {
-  "name": "vue-swipe-h3nr1ke",
-  "version": "2.4.0",
+  "name": "h3nr1ke-vueswipe",
+  "version": "2.4.1",
   "description": "A touch slider for vue.js.",
   "main": "dist/vue-swipe.js",
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/h3nr1ke/vue-swipe-h3nr1ke.git"
+    "url": "git+https://github.com/h3nr1ke/h3nr1ke-vueswipe.git"
   },
   "babel": {
     "presets": [
@@ -31,7 +31,7 @@
   "author": "Henrique Deodato",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/h3nr1ke/vue-swipe-h3nr1ke/issues"
+    "url": "https://github.com/h3nr1ke/h3nr1ke-vueswipe/issues"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -52,5 +52,9 @@
   },
   "dependencies": {
     "wind-dom": "0.0.3"
+  },
+  "homepage": "https://github.com/h3nr1ke/h3nr1ke-vueswipe#readme",
+  "directories": {
+    "example": "example"
   }
 }
