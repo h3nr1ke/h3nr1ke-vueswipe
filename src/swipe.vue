@@ -70,15 +70,16 @@
     <div class="mint-swipe-indicators" v-show="showIndicators">
       <div class="mint-swipe-indicator"
            v-for="(page, $index) in pages"
+           :data-index="$index"
            :key="$index"
            @click="goto($index)"
-           :class="{ 'is-active': $index === index }"></div>
+           :class="[($index === index)?'is-active':'', indicatorClass?indicatorClass:'']"></div>
     </div>
-    <div class="mint-swipe-arrow-left" @click="prev()" v-show="showArrows">
+    <div :class="[leftArrowClass]" class="mint-swipe-arrow-left" @click="prev()" data-direction="left" v-show="showArrows">
       <img :src="leftArrow" v-if="leftArrow !== ''" />
       <span v-else>&lt;</span>
     </div>
-    <div class="mint-swipe-arrow-right" @click="next()" v-show="showArrows">
+    <div :class="[rightArrowClass]" class="mint-swipe-arrow-right" @click="next()" data-direction="right" v-show="showArrows">
       <img :src="rightArrow" v-if="rightArrow !== ''" />
       <span v-else>&gt;</span>
     </div>
@@ -141,6 +142,11 @@
         default: true
       },
 
+      indicatorClass: {
+        type: String,
+        default: ""
+      },
+
       noDragWhenSingle: {
         type: Boolean,
         default: true
@@ -166,7 +172,17 @@
         default: ""
       },
 
+      leftArrowClass: {
+        type: String,
+        default: ""
+      },
+
       rightArrow: {
+        type: String,
+        default: ""
+      },
+
+      rightArrowClass: {
         type: String,
         default: ""
       }

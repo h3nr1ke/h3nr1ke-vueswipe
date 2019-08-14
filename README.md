@@ -102,9 +102,12 @@ Work on a Vue instance:
 | auto | Number | Delay of auto slide | 3000 |
 | continuous | Boolean | Create an infinite slider without endpoints | true |
 | showIndicators | Boolean | Show indicators on slider bottom | true |
+| indicatorClass | String | an extra class to be added in the indicators | "" |
 | showArrows | Boolean | Show lateral centered arrows | false |
 | leftArrow | String | image to be displayed as left arrow | the char "<" |
+| leftArrowClass | String | an extra class in the left arrow wrapper element | "" |
 | rightArrow | String | image to be displayed as right arrow | the char ">" |
+| rightArrowClass | String | an extra class in the right arrow wrapper element | "" |
 | noDragWhenSingle | Boolean | Do not drag when there is only one swipe-item | true |
 | prevent | Boolean | `preventDefault` when touch start, useful for some lower version Android Browser (4.2, etc) | false |
 | propagation | Boolean | solve nesting | false |
