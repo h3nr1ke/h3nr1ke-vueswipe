@@ -105,9 +105,11 @@ Work on a Vue instance:
 | indicatorClass | String | an extra class to be added in the indicators | "" |
 | showArrows | Boolean | Show lateral centered arrows | false |
 | leftArrow | String | image to be displayed as left arrow | the char "<" |
-| leftArrowClass | String | an extra class in the left arrow wrapper element | "" |
+| leftArrowClass | String | text for alt property | "" |
+| leftArrowTitle | String | an extra class in the left arrow wrapper element | "" |
 | rightArrow | String | image to be displayed as right arrow | the char ">" |
 | rightArrowClass | String | an extra class in the right arrow wrapper element | "" |
+| rightArrowTitle | String | text for alt property | "" |
 | noDragWhenSingle | Boolean | Do not drag when there is only one swipe-item | true |
 | prevent | Boolean | `preventDefault` when touch start, useful for some lower version Android Browser (4.2, etc) | false |
 | propagation | Boolean | solve nesting | false |
