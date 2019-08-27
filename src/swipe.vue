@@ -69,18 +69,18 @@
     </div>
     <div class="mint-swipe-indicators" v-show="showIndicators">
       <div class="mint-swipe-indicator"
-           v-for="(page, $index) in pages"
-           :data-index="$index"
-           :key="$index"
-           @click="goto($index)"
-           :class="[($index === index)?'is-active':'', indicatorClass?indicatorClass:'']"></div>
+        v-for="(page, $index) in pages"
+        :data-index="$index"
+        :key="$index"
+        @click="goto($index)"
+        :class="[($index === index)?'is-active':'', indicatorClass?indicatorClass:'']"></div>
     </div>
     <div :class="[leftArrowClass]" class="mint-swipe-arrow-left" @click="prev()" data-direction="left" v-show="showArrows">
-      <img :src="leftArrow" v-if="leftArrow !== ''" />
+      <img :src="leftArrow" v-if="leftArrow !== ''" :alt="leftArrowTitle" />
       <span v-else>&lt;</span>
     </div>
     <div :class="[rightArrowClass]" class="mint-swipe-arrow-right" @click="next()" data-direction="right" v-show="showArrows">
-      <img :src="rightArrow" v-if="rightArrow !== ''" />
+      <img :src="rightArrow" v-if="rightArrow !== ''" :alt="rightArrowTitle" />
       <span v-else>&gt;</span>
     </div>
   </div>
@@ -176,6 +176,11 @@
         type: String,
         default: ""
       },
+      
+      leftArrowTitle: {
+        type: String,
+        default: "Prev"
+      },
 
       rightArrow: {
         type: String,
@@ -185,8 +190,12 @@
       rightArrowClass: {
         type: String,
         default: ""
-      }
+      },
 
+      rightArrowTitle: {
+        type: String,
+        default: "Next"
+      }
     },
 
     methods: {
