@@ -114,6 +114,7 @@ Work on a Vue instance:
 | prevent | Boolean | `preventDefault` when touch start, useful for some lower version Android Browser (4.2, etc) | false |
 | propagation | Boolean | solve nesting | false |
 | disabled | Boolean | disabled user swipe item | false |
+| disabledClickIndicator | Boolean | disabled user click in the indicators | false |
 
 ### Events
 
