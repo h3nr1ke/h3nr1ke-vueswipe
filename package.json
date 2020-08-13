@@ -1,6 +1,6 @@
 {
   "name": "h3nr1ke-vueswipe",
-  "version": "2.4.3",
+  "version": "2.4.4",
   "description": "A touch slider for vue.js.",
   "main": "dist/vue-swipe.js",
   "scripts": {

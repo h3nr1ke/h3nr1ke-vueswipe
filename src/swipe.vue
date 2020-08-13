@@ -72,7 +72,7 @@
         v-for="(page, $index) in pages"
         :data-index="$index"
         :key="$index"
-        @click="goto($index)"
+        @click.prevent="goto($index)"
         :class="[($index === index)?'is-active':'', indicatorClass?indicatorClass:'']"></div>
     </div>
     <div :class="[leftArrowClass]" class="mint-swipe-arrow-left" @click="prev()" data-direction="left" v-show="showArrows">
@@ -195,7 +195,12 @@
       rightArrowTitle: {
         type: String,
         default: "Next"
-      }
+      },
+
+      disabledClickIndicator: {
+        type: Boolean,
+        default: false
+      },
     },
 
     methods: {
@@ -411,18 +416,20 @@
       },
 
       goto(newIndex) {
-        if (this.index === newIndex) return;
-
-        if (newIndex < this.index) {
-          this.doAnimate('goto', {
-            newIndex,
-            prevPage: this.pages[newIndex]
-          });
-        } else {
-          this.doAnimate('goto', {
-            newIndex,
-            nextPage: this.pages[newIndex]
-          });
+        if(!this.disabledClickIndicator){
+          if (this.index === newIndex) return;
+  
+          if (newIndex < this.index) {
+            this.doAnimate('goto', {
+              newIndex,
+              prevPage: this.pages[newIndex]
+            });
+          } else {
+            this.doAnimate('goto', {
+              newIndex,
+              nextPage: this.pages[newIndex]
+            });
+          }
         }
       },
 
